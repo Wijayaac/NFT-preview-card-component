@@ -42,15 +42,72 @@ body {
     margin: 10px 0;
   }
   &__header-image {
-    object-fit: cover;
+    color: $white;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
     width: 100%;
-    height: 300px;
-    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5 ease;
+    &::before,
+    &::after {
+      background-color: rgba($color: $cyan, $alpha: 0.25);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: "";
+      z-index: 1;
+      opacity: 0;
+      transform: scaleY(2);
+    }
+    & img {
+      vertical-align: top;
+      max-width: 100%;
+      backface-visibility: hidden;
+    }
+    & figcaption {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      line-height: 1.1;
+      opacity: 0;
+      z-index: 2;
+      transition-delay: 0.1s;
+      font-size: 24px;
+    }
+    &:hover::before,
+    &:hover::after {
+      transform: scale(1);
+      opacity: 1;
+    }
+    &:hover > img {
+      opacity: 0.7;
+    }
+    &:hover figcaption {
+      opacity: 1;
+    }
   }
+
   &__title {
     font-size: 1.2rem;
     font-weight: 600;
     margin: 10px 0;
+    text-decoration: none;
+    color: $white;
+    transition: color ease 0.5s;
+    &:hover {
+      color: $cyan;
+    }
   }
   &__text {
     font-size: $font-regular;
@@ -95,7 +152,12 @@ body {
     margin-right: 10px;
   }
   &__author-name {
+    text-decoration: none;
     font-weight: 600;
     color: $white;
+    transition: color ease 0.5s;
+    &:hover {
+      color: $cyan;
+    }
   }
 }
